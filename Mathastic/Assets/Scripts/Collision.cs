@@ -25,6 +25,7 @@ public class Collision : MonoBehaviour
     private void OnCollisionEnter(UnityEngine.Collision collision)
     {
         print(name + " Collided with: " + collision.transform.gameObject.name);
+
         if (collision.transform.gameObject.tag.Equals("Division"))
         {
             RB.mass = (RB.mass / 2);
@@ -34,16 +35,19 @@ public class Collision : MonoBehaviour
         else if (collision.transform.gameObject.tag.Equals("Multiply"))
         {
             RB.mass = (RB.mass * 2);
+            print(name + " New mass of " + RB.mass);
         }
 
         else if (collision.transform.gameObject.tag.Equals("Add"))
         {
             RB.mass = (RB.mass + UnitMass);
+            print(name + " New mass of " + RB.mass);
         }   
 
         else if (collision.transform.gameObject.tag.Equals("Minus"))
         {
             RB.mass = (RB.mass - UnitMass);
+            print(name + " New mass of " + RB.mass);
         }
 
     }

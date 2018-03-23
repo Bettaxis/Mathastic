@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 363767497}
   m_Layer: 0
   m_Name: 1Mass
-  m_TagString: Untagged
+  m_TagString: Mass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -899,7 +899,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18613b0068fcaff4fb0014360e892bbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  block: {fileID: 1970225063430784, guid: ef57999586d331b4facf4aaf59e5833f, type: 2}
 --- !u!4 &1913663485
 Transform:
   m_ObjectHideFlags: 0
@@ -928,7 +927,7 @@ GameObject:
   - component: {fileID: 2014198882}
   m_Layer: 0
   m_Name: 10Mass
-  m_TagString: Untagged
+  m_TagString: Mass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1022,7 +1021,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2014198876}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13779c08ac60dcb4794a2dd0b2ebdb7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ddb6f1cf9bbbd84787a930bee7925a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitMass: 1
+  UnitMass: 0

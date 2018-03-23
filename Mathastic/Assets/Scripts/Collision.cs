@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Collision : MonoBehaviour
 {
-
     Rigidbody RB;
     public float UnitMass;
     
 
 	// Use this for initialization
 	void Start () {
-		
+        RB = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -23,31 +22,27 @@ public class Collision : MonoBehaviour
 
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(UnityEngine.Collision collision)
     {
-        //Debug.Log("Collided!");
-
-        if (collision.CompareTag("Division"))
+        print(name + " Collided with: " + collision.transform.gameObject.name);
+        if (collision.transform.gameObject.tag.Equals("Division"))
         {
-            RB = this.GetComponent<Rigidbody>();
             RB.mass = (RB.mass / 2);
+            print(name + " New mass of " + RB.mass);
         }
 
-        if (collision.CompareTag("Multiply"))
+        else if (collision.transform.gameObject.tag.Equals("Multiply"))
         {
-            RB = this.GetComponent<Rigidbody>();
             RB.mass = (RB.mass * 2);
         }
 
-        if (collision.CompareTag("Add"))
+        else if (collision.transform.gameObject.tag.Equals("Add"))
         {
-            RB = this.GetComponent<Rigidbody>();
             RB.mass = (RB.mass + UnitMass);
         }   
 
-        if (collision.CompareTag("Minus"))
+        else if (collision.transform.gameObject.tag.Equals("Minus"))
         {
-            RB = this.GetComponent<Rigidbody>();
             RB.mass = (RB.mass - UnitMass);
         }
 

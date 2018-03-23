@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 54205741307420484}
   m_Layer: 0
   m_Name: Block Prefab
-  m_TagString: Untagged
+  m_TagString: Division
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: b566c89de28903f49b9e127b5defd735, type: 2}
+  - {fileID: 2100000, guid: bb399a8f0af60e649b2e55d6c7be2583, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -36,27 +36,15 @@ public class SpawnCube : MonoBehaviour
         //    copy.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.down);
         //}
 
+
         if (!fallingBlock)
         {
-            float val = Random.Range(0.0f, 1.0f);
-            if (val > 0.5)
-            {
-                fallingBlock = Instantiate(block, rightTray);
-                fallingBlock.transform.localScale = new Vector3(1.0f / 5.0f, 1.0f / 0.25f, 1.0f / 5.0f);
-                fallingBlock.transform.localPosition = new Vector3(0, blockSpawnVertOffset, 0);
-            }
-            else
-            {
-                fallingBlock  = Instantiate(block, leftTray);
-                fallingBlock.transform.localScale = new Vector3(1.0f / 5.0f, 1.0f / 0.25f, 1.0f / 5.0f);
-                fallingBlock.transform.localPosition = new Vector3(0, blockSpawnVertOffset, 0);
-            }
+            MakeBlock();
         }
-
         //fallingBlock.transform.localPosition = new Vector3(fallingBlock.transform.localPosition.x, 10, fallingBlock.transform.localPosition.z);
         //fallingBlock.transform.localScale = new Vector3(1 / fallingBlock.transform.parent.localScale.x, 1 / fallingBlock.transform.parent.localScale.y, 1 / fallingBlock.transform.parent.localScale.z);
 
-        print(fallingBlock.transform.localPosition.z + " : " + trayWidth / 10);
+        //print(fallingBlock.transform.localPosition.z + " : " + trayWidth / 10);
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -64,10 +52,10 @@ public class SpawnCube : MonoBehaviour
             {
                 print("right");
                 //right edge of tray
-                if (fallingBlock.transform.parent = leftTray)
+                if (fallingBlock.transform.parent == leftTray)
                 {
                     Vector3 pos = new Vector3(fallingBlock.transform.localPosition.x, fallingBlock.transform.localPosition.y, 0);
-                    fallingBlock.transform.parent = rightTray;
+                    fallingBlock.transform.SetParent(rightTray);
                     fallingBlock.transform.localPosition = pos;
                 }
             }
@@ -80,10 +68,10 @@ public class SpawnCube : MonoBehaviour
             {
                 print("left");
                 //left edge of tray
-                if (fallingBlock.transform.parent = rightTray)
+                if (fallingBlock.transform.parent == rightTray)
                 {
                     Vector3 pos = new Vector3(fallingBlock.transform.localPosition.x, fallingBlock.transform.localPosition.y, 0);
-                    fallingBlock.transform.parent = leftTray;
+                    fallingBlock.transform.SetParent(leftTray);
                     fallingBlock.transform.localPosition = pos;
                 }
             }
@@ -91,7 +79,40 @@ public class SpawnCube : MonoBehaviour
                 fallingBlock.transform.localPosition += new Vector3(0, 0, 0.15f);
         }
 
+        if(Input.GetKeyDown(KeyCode.Space)){
+            MakeBlock();
+        }
 
+
+    }
+
+    private void MakeBlock(){
+        int rng = Random.Range(0, 2);
+        Transform parent = rightTray;
+        if (rng == 1)
+                  parent = leftTray;
+
+        fallingBlock = Instantiate(block, parent);
+        fallingBlock.transform.localScale = new Vector3(1.0f / 5.0f, 1.0f / 0.25f, 1.0f / 5.0f);
+        fallingBlock.transform.localPosition = new Vector3(0, blockSpawnVertOffset, 0);
+        
+
+        // set the block's tag and mass
+        rng = Random.Range(0, 10);
+        if(rng > (int)Tag.Mass)
+            rng = (int)Tag.Mass;
+
+        fallingBlock.tag = ((Tag)rng).ToString();
+        if(rng == (int)Tag.Mass)
+            fallingBlock.GetComponent<Rigidbody>().mass = Random.Range(1, 10);
+    }
+
+    public enum Tag{
+        Add = 0,
+        Minus = 1,
+        Division,
+        Multiply,
+        Mass
     }
 
 }

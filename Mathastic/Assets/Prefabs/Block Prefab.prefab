@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65345782809109766}
   - component: {fileID: 23498474792048060}
   - component: {fileID: 54205741307420484}
+  - component: {fileID: 114324861782042990}
   m_Layer: 0
   m_Name: Block Prefab
   m_TagString: Division
@@ -52,12 +53,11 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: bb399a8f0af60e649b2e55d6c7be2583, type: 2}
+  - {fileID: 2100000, guid: 92d358d1dd702da4b86611c2132a1806, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -68,7 +68,6 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -97,7 +96,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!65 &65345782809109766
 BoxCollider:
@@ -111,3 +110,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114324861782042990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1970225063430784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ddb6f1cf9bbbd84787a930bee7925a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitMass: 1

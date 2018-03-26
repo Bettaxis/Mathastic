@@ -5,7 +5,7 @@ using UnityEngine;
 public class Collision : MonoBehaviour
 {
     Rigidbody RB;
-    public float UnitMass;
+    public float UnitMass = 0.0f;
     
 
 	// Use this for initialization
@@ -30,25 +30,35 @@ public class Collision : MonoBehaviour
         {
             RB.mass = (RB.mass / 2);
             print(name + " New mass of " + RB.mass);
+            GameObject.Destroy(collision.gameObject);
+            tag = "Division";
         }
 
         else if (collision.transform.gameObject.tag.Equals("Multiply"))
         {
             RB.mass = (RB.mass * 2);
             print(name + " New mass of " + RB.mass);
+            GameObject.Destroy(collision.gameObject);
+            tag = "Multiply";
         }
 
         else if (collision.transform.gameObject.tag.Equals("Add"))
         {
             RB.mass = (RB.mass + UnitMass);
             print(name + " New mass of " + RB.mass);
+            GameObject.Destroy(collision.gameObject);
+            tag = "Add";
         }   
 
         else if (collision.transform.gameObject.tag.Equals("Minus"))
         {
             RB.mass = (RB.mass - UnitMass);
             print(name + " New mass of " + RB.mass);
+            GameObject.Destroy(collision.gameObject);
+            tag = "Minus";
         }
 
     }
+
+    
 }

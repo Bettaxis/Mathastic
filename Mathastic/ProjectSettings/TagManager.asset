@@ -9,6 +9,7 @@ TagManager:
   - Division
   - Multiply
   - Mass
+  - Tray
   layers:
   - Default
   - TransparentFX

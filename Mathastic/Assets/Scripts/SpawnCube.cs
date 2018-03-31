@@ -11,7 +11,6 @@ public class SpawnCube : MonoBehaviour
     public Transform rightTray;
     public float blockSpawnVertOffset = 50.0f;
     public float trayWidth = 0.5f;
-    public Color[] colours = { Color.red, Color.blue, Color.green, Color.yellow, Color.cyan, Color.magenta, new Color(1.0f, 0.5f, 0.02f), new Color(1.0f, 0.0f, 1.0f) };
 
     private GameObject fallingBlock;
 
@@ -24,23 +23,9 @@ public class SpawnCube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Alpha1)) // Spawns on 1
-        //{
-        //    GameObject copy;
-        //    copy = Instantiate(block, new Vector3(1, transform.position.y, 5), transform.rotation);
-        //    copy.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.down);
-        //}
-        //if (Input.GetKeyDown(KeyCode.Alpha2)) // Spawns on 2
-        //{
-        //    GameObject copy;
-        //    copy = Instantiate(block, new Vector3(1, transform.position.y, -5), transform.rotation);
-        //    copy.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.down);
-        //}
-
-
         if (!fallingBlock)
         {
-            //MakeBlock();
+            MakeBlock();
         }else{
             fallingBlock.transform.localPosition = new Vector3(fallingBlock.transform.localPosition.x, blockSpawnVertOffset, fallingBlock.transform.localPosition.z);
             fallingBlock.GetComponent<Rigidbody>().velocity = new Vector3();
@@ -54,7 +39,7 @@ public class SpawnCube : MonoBehaviour
         {
             if (fallingBlock.transform.localPosition.z <= -0.25f)
             {
-                print("right");
+
                 //right edge of tray
                 if (fallingBlock.transform.parent == leftTray)
                 {
@@ -70,7 +55,7 @@ public class SpawnCube : MonoBehaviour
         {
             if (fallingBlock.transform.localPosition.z >= 0.25f)
             {
-                print("left");
+
                 //left edge of tray
                 if (fallingBlock.transform.parent == rightTray)
                 {
@@ -83,7 +68,7 @@ public class SpawnCube : MonoBehaviour
                 fallingBlock.transform.localPosition += new Vector3(0, 0, 0.2f);
         }
 
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.DownArrow)){
             MakeBlock();
         }
 
@@ -105,42 +90,24 @@ public class SpawnCube : MonoBehaviour
         fallingBlock.transform.localPosition = new Vector3(0, blockSpawnVertOffset, 0);
         
 
-        // set the block's tag, mass, and text
+        // random the block's tag, mass, and text
         rng = Random.Range(0, 10);//(int)Tag.Mass);
+        float mass = 0;
         if(rng > (int)Tag.Mass)
             rng = (int)Tag.Mass;
 
         if(rng == (int)Tag.Division)
             rng++;
-
-        fallingBlock.tag = ((Tag)rng).ToString();
           
-        fallingBlock.GetComponent<Rigidbody>().mass = Random.Range(1, 10);
+        mass = Random.Range(1, 10);
 
         if(rng == (int)Tag.Minus)
-            fallingBlock.GetComponent<Rigidbody>().mass = Random.Range(1,3) * 5;
+            mass = Random.Range(1,3) * 5;
         if(rng == (int)Tag.Multiply)
-            fallingBlock.GetComponent<Rigidbody>().mass = Random.Range(1,4) * 2;
-        
-        fallingBlock.GetComponent<Collision>().text.text = "" + fallingBlock.GetComponent<Rigidbody>().mass;
-        switch((Tag)rng){
-            case Tag.Add:
-            fallingBlock.GetComponent<Collision>().text.text += "+";
-            break;
-            case Tag.Division:
-            fallingBlock.GetComponent<Collision>().text.text += "÷";
-            break;
-            case Tag.Minus:
-            fallingBlock.GetComponent<Collision>().text.text += "-";
-            break;
-            case Tag.Multiply:
-            fallingBlock.GetComponent<Collision>().text.text += "X";
-            break;
-        }
+            mass = Random.Range(1,4) * 2;
 
-        // set the colour
-        rng = Random.Range(0, colours.Length);
-        fallingBlock.GetComponent<Renderer>().material.color = colours[rng];
+        //call blocks set function
+        fallingBlock.GetComponent<Collision>().SetBlock((Tag)rng, mass);
     }
 
 

@@ -32,9 +32,9 @@ public class Collision : MonoBehaviour
         tag = type.ToString();
         if (!RB)
             RB = GetComponent<Rigidbody>();
-        RB.mass = value;
-        text.text = "" + RB.mass;
-
+        RB.mass = value / 10;
+        text.text = "" + value;
+        UnitMass = value;
         switch (type)
         {
             case Tag.Add:
@@ -61,28 +61,28 @@ public class Collision : MonoBehaviour
         if(!spent)
         if (collision.transform.gameObject.tag.Equals("Division"))
         {
-            SetBlock(Tag.Mass, (collision.gameObject.GetComponent<Rigidbody>().mass / RB.mass));
+            SetBlock(Tag.Mass, (collision.gameObject.GetComponent<Collision>().UnitMass / UnitMass));
             collision.gameObject.GetComponent<Collision>().spent = true;
             GameObject.Destroy(collision.gameObject);
         }
 
         else if (collision.transform.gameObject.tag.Equals("Multiply"))
         {
-            SetBlock(Tag.Mass, (collision.gameObject.GetComponent<Rigidbody>().mass * RB.mass));
+            SetBlock(Tag.Mass, (collision.gameObject.GetComponent<Collision>().UnitMass * UnitMass));
             collision.gameObject.GetComponent<Collision>().spent = true;
             GameObject.Destroy(collision.gameObject);
         }
 
         else if (collision.transform.gameObject.tag.Equals("Add") && !tag.Equals("Multiply"))
         {
-            SetBlock(Tag.Mass, (collision.gameObject.GetComponent<Rigidbody>().mass + RB.mass));
+            SetBlock(Tag.Mass, (collision.gameObject.GetComponent<Collision>().UnitMass + UnitMass));
             collision.gameObject.GetComponent<Collision>().spent = true;
             GameObject.Destroy(collision.gameObject);
         }   
 
         else if (collision.transform.gameObject.tag.Equals("Minus") && !tag.Equals("Multiply"))
         {
-            SetBlock(Tag.Mass, (collision.gameObject.GetComponent<Rigidbody>().mass - RB.mass));
+            SetBlock(Tag.Mass, (collision.gameObject.GetComponent<Collision>().UnitMass - UnitMass));
             collision.gameObject.GetComponent<Collision>().spent = true;
             GameObject.Destroy(collision.gameObject);
         }

@@ -35,9 +35,9 @@ public class Timer : MonoBehaviour {
 
         //textObject.text = timer.ToString();
         if (!lost)
-            warning.text = imbalanced ? triggerTime.ToString() : "";
+            warning.text = imbalanced ? ((int)triggerTime).ToString() : "";
         else
-            warning.text = "You Lost!\nPress Space or Down to restart.";
+            warning.text = "You Lost!\nPress Space\n to restart.";
 
         if ((lost && Input.GetKeyDown(KeyCode.Space)) || (lost && Input.GetKeyDown(KeyCode.DownArrow)))
             UnityEngine.SceneManagement.SceneManager.LoadScene("BaseLevel");

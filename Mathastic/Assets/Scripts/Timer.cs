@@ -39,7 +39,7 @@ public class Timer : MonoBehaviour {
         else
             warning.text = "You Lost!\nPress Space or Down to restart.";
 
-        if (lost && Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.DownArrow))
+        if ((lost && Input.GetKeyDown(KeyCode.Space)) || (lost && Input.GetKeyDown(KeyCode.DownArrow)))
             UnityEngine.SceneManagement.SceneManager.LoadScene("BaseLevel");
     }
 

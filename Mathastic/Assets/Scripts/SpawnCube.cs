@@ -72,6 +72,8 @@ public class SpawnCube : MonoBehaviour
             MakeBlock();
         }
 
+        if (Input.GetKey("escape"))
+            Application.Quit();
 
     }
 
